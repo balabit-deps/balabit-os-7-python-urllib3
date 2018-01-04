@@ -1,0 +1,22 @@
+#!/usr/bin/make -f
+
+export PYBUILD_NAME=urllib3
+export PYTHONWARNINGS=d
+export PYBUILD_TEST_PYTEST=1
+export PYBUILD_TEST_ARGS=\
+	--ignore=test/appengine \
+	--ignore=test/with_dummyserver \
+	--ignore=test/test_connectionpool.py \
+	--ignore=test/contrib/test_socks.py \
+	-k-test_recent_date
+# Skip timing tests
+export TRAVIS=1
+
+%:
+	dh $@ --with python2,python3 --buildsystem=pybuild
+
+override_dh_auto_configure:
+	rm -f urllib3/packages/six.py
+
+override_dh_installchangelogs:
+	dh_installchangelogs CHANGES.rst
