@@ -1,3 +1,28 @@
+python-urllib3 (1.22-1ubuntu0.18.04.1) bionic-security; urgency=medium
+
+  * SECURITY UPDATE: credential disclosure via cross-origin redirect
+    - debian/patches/CVE-2018-20060-*.patch: backport logic to strip
+      Authorization header when following a cross-origin redirect.
+    - CVE-2018-20060
+  * SECURITY UPDATE: CRLF injection issue
+    - debian/patches/CVE-2019-11236-1.patch: check for control chars in URL
+      in urllib3/connection.py, urllib3/connectionpool.py,
+      urllib3/contrib/pyopenssl.py, urllib3/contrib/socks.py,
+      urllib3/util/url.py, test/test_util.py.
+    - debian/patches/CVE-2019-11236-2.patch: percent-encode invalid target
+      characters in urllib3/util/url.py, test/test_util.py.
+    - debian/patches/CVE-2019-11236-3.patch: don't use embedded python-six
+      in urllib3/util/url.py.
+    - CVE-2019-11236
+  * SECURITY UPDATE: CA cert mishandling
+    - debian/patches/CVE-2019-11324.patch: don't load system certificates
+      by default when any other CA cert parameters are specified in
+      urllib3/util/ssl_.py.
+    - CVE-2019-11324
+  * debian/patches/fix_cert_error.patch: fix failing test.
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Mon, 13 May 2019 14:27:58 -0400
+
 python-urllib3 (1.22-1) unstable; urgency=medium
 
   * Team upload.
