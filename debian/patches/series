@@ -17,3 +17,4 @@ CVE-2019-11236-2.patch
 CVE-2019-11236-3.patch
 CVE-2019-11324.patch
 fix_cert_error.patch
+CVE-2020-26137.patch
